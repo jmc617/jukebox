@@ -1,65 +1,71 @@
-document.addEventListener("DOMContentLoaded",function Jukebox(){
-  var songTest =  ("<source src=\"test.mp3\" type=\"audio/mp3\">")
-  var songTest2 = ("<source src=\"test3.ogg\" type=\"audio/ogg\">")
-  var playlist = [songTest,songTest2]
-  player = document.getElementById("player");
-  player.innerHTML = playlist[0]
-  console.log(playlist[0]);
-  console.log("hello");
+document.addEventListener("DOMContentLoaded",function jukebox(){
+  // audio player
+  var player = document.getElementById("player");
+  // songs object
+  function Music(title, path) {
+    this.title = title;
+    this.path = path;
+  }
+  // songs
+  var song1 = new Music ("song 1", "<source src=\"song1.mp3\" type=\"audio/mp3\">")
+  var song2 = new Music ("song 2", "<source src=\"song2.mp3\" type=\"audio/mp3\">")
+  var song3 = new Music ("song 3", "<source src=\"song3.mp3\" type=\"audio/mp3\">")
+  var test = new Music ("song 4", "<source src=\"test.mp3\" type=\"audio/mp3\">")
 
-  play = document.getElementById("play");
-  pause = document.getElementById("pause")
-  stop = document.getElementById("stop");
-  next = document.getElementById("next");
-  source = document.getElementById("source")
+  // playlist array
+  var playlist = [song1,song2,song3,test]
+  // tests
 
+  // console.log(playlist.length);
+  // console.log(playlist[0].path);
+  // console.log(song1);
+  // console.log(song1.title);
+  // console.log(song1.path);
+
+  // intial song load
+  var nowPlaying = []
+  player.innerHTML = playlist[0].path
+  nowPlaying.push(2)
+  // console.log(nowPlaying[0]);
+
+  // button actions
+  var next = document.getElementById("next")
+  next.addEventListener("click", function(){
+    var i = playlist[i]
+    if (nowPlaying[0] > playlist.length) {
+      player.innerHTML = playlist[0].path
+      nowPlaying.splice(0,1,2)
+      // console.log(nowPlaying);
+      player.load()
+    } else {
+      var newNowPlaying = nowPlaying[0]+1
+      var newSong = playlist[nowPlaying-1]
+
+      nowPlaying.splice(0,1,newNowPlaying)
+      // console.log(nowPlaying);
+      // console.log(nowPlaying-1);
+
+      player.innerHTML = newSong.path
+      // console.log(newSong.path);
+      // console.log(newNowPlaying);
+      // console.log(nowPlaying);
+      player.load()
+    }
+  })
+  var play = document.getElementById("play");
   play.addEventListener("click", function(){
+    player = document.getElementById("player");
     player.play()
   })
+  var pause = document.getElementById('pause')
   pause.addEventListener("click", function(){
+    player = document.getElementById("player");
     player.pause()
   })
+  var stop = document.getElementById('stop')
   stop.addEventListener("click", function(){
+    player = document.getElementById("player");
     player.pause()
     player.currentTime = 0;
-  next.addEventListener("click", function(){
-      // console.log(playlist [i+1]);
-      console.log("helloB");
-    })
   })
 })
-
-
-  // function Jukebox(sourceURL){
-
-
-// var songTest = new Jukebox ("<source src=\"test.mp3\" type=\"audio/mp3\">")
-// var songTest2 = new Jukebox ("<source src=\"test3.ogg\" type=\"audio/ogg\">")
-// var playlist = [songTest,songTest2]
-
-
-
-// need loop
-// next.addEventListener("click", function() {
-//   this.player.innerHTML = this.playlist[0].sourceURL
-// })
-// }
-//
-// })
-
-
-
-
-// var songTest = new Jukebox ("<source src=\"test.mp3\" type=\"audio/mp3\">")
-// var songTest2 = new Jukebox ("<source src=\"test3.ogg\" type=\"audio/ogg\">")
-// var playlist = [songTest,songTest2]
-//
-// document.addEventListener("load",function(){
-//   this.player.innerHTML = this.playlist[0].sourceURL
-//   console.log(playlist[0].sourceURL);
-//   console.log(hello);
-// })
-//
-// this.next.addEventListener("click", function() {
-//   this.player.innerHTML = this.playlist[0].sourceURL
-// })
