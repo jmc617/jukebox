@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded",function jukebox(){
+document.addEventListener("DOMContentLoaded",function Jukebox(){
   // audio player
   var player = document.getElementById("player");
   // songs object
@@ -14,50 +14,34 @@ document.addEventListener("DOMContentLoaded",function jukebox(){
 
   // playlist array
   var playlist = [song1,song2,song3,test]
-  // tests
-
-  // console.log(playlist.length);
-  // console.log(playlist[0].path);
-  // console.log(song1);
-  // console.log(song1.title);
-  // console.log(song1.path);
 
   // intial song load
   var nowPlaying = []
   player.innerHTML = playlist[0].path
   nowPlaying.push(2)
-  // console.log(nowPlaying[0]);
 
   // button actions
-  var next = document.getElementById("next")
+  Jukebox.next = document.getElementById("next")
   next.addEventListener("click", function(){
     var i = playlist[i]
     if (nowPlaying[0] > playlist.length) {
       player.innerHTML = playlist[0].path
       nowPlaying.splice(0,1,2)
-      // console.log(nowPlaying);
       player.load()
     } else {
       var newNowPlaying = nowPlaying[0]+1
       var newSong = playlist[nowPlaying-1]
-
       nowPlaying.splice(0,1,newNowPlaying)
-      // console.log(nowPlaying);
-      // console.log(nowPlaying-1);
-
       player.innerHTML = newSong.path
-      // console.log(newSong.path);
-      // console.log(newNowPlaying);
-      // console.log(nowPlaying);
       player.load()
     }
   })
-  var play = document.getElementById("play");
+  Jukebox.play = document.getElementById("play");
   play.addEventListener("click", function(){
     player = document.getElementById("player");
     player.play()
   })
-  var pause = document.getElementById('pause')
+  Jukebox.pause = document.getElementById('pause')
   pause.addEventListener("click", function(){
     player = document.getElementById("player");
     player.pause()
